@@ -34,8 +34,9 @@ Once the app is running, you can swipe through the user cards on the main screen
 
 Here's a video demonstration of the app in action:
 
+
 <video width="720" height="480" controls>
-  <source src="path_to_your_video.mp4" type="video/mp4">
+  <source src="https://github.com/user-attachments/assets/8b42e07b-d502-4306-833a-38f0b49c5aec">
   Your browser does not support the video tag.
 </video>
 
