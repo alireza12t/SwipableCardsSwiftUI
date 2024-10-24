@@ -15,27 +15,27 @@ enum LikeDislike: Int {
 struct CardView: View {
     @State private var translation: CGSize = .zero
     @State private var swipeStatus: LikeDislike = .none
-
+    
     private var user: User
     private var onRemove: (_ user: User, _ swipeStatus: LikeDislike) -> Void
-
+    
     private let thresholdPercentage: CGFloat = 0.5 // Threshold for swipe action
-
+    
     init(user: User, onRemove: @escaping (_ user: User, _ swipeStatus: LikeDislike) -> Void) {
         self.user = user
         self.onRemove = onRemove
     }
-
+    
     /// Calculates horizontal swipe percentage relative to the card's width
     private func getGesturePercentage(_ geometry: GeometryProxy, from gesture: DragGesture.Value) -> CGFloat {
         gesture.translation.width / geometry.size.width
     }
-
+    
     /// Calculates vertical swipe percentage relative to the card's height
     private func getVerticalGesturePercentage(_ geometry: GeometryProxy, from gesture: DragGesture.Value) -> CGFloat {
         gesture.translation.height / geometry.size.height
     }
-
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -43,21 +43,8 @@ struct CardView: View {
                 backgroundColor()
                     .cornerRadius(10)
                     .shadow(radius: 5)
-
-                VStack(alignment: .leading) {
-                    // Uncomment and modify the following lines if you have image assets
-                    /*
-                    Image(self.user.imageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: geometry.size.width, height: geometry.size.height * 0.75)
-                        .clipped()
-                    */
-
-                    // User information
-                    userInfo
-                }
-                .padding(.bottom)
+                
+                userInfo
             }
             .animation(.interactiveSpring(), value: translation)
             .offset(x: translation.width, y: translation.height)
@@ -66,10 +53,10 @@ struct CardView: View {
                 DragGesture()
                     .onChanged { value in
                         translation = value.translation
-
+                        
                         let horizontalPercentage = getGesturePercentage(geometry, from: value)
                         let verticalPercentage = getVerticalGesturePercentage(geometry, from: value)
-
+                        
                         if verticalPercentage <= -thresholdPercentage {
                             swipeStatus = .superLike
                         } else if horizontalPercentage >= thresholdPercentage {
@@ -83,7 +70,7 @@ struct CardView: View {
                     .onEnded { value in
                         let horizontalPercentage = getGesturePercentage(geometry, from: value)
                         let verticalPercentage = getVerticalGesturePercentage(geometry, from: value)
-
+                        
                         if verticalPercentage <= -thresholdPercentage {
                             // Swipe Up - Super Like
                             onRemove(user, .superLike)
@@ -99,9 +86,9 @@ struct CardView: View {
             )
         }
     }
-
+    
     // MARK: - Subviews and Helpers
-
+    
     /// Returns the background color based on the swipe status
     private func backgroundColor() -> Color {
         switch swipeStatus {
@@ -115,30 +102,18 @@ struct CardView: View {
             return Color.white
         }
     }
-
+    
     /// User information section
     private var userInfo: some View {
         VStack(alignment: .leading) {
-            HStack {
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("\(user.firstName) \(user.lastName), \(user.age)")
-                        .font(.title)
-                        .bold()
-                    Text(user.occupation)
-                        .font(.subheadline)
-                        .bold()
-                    Text("\(user.mutualFriends) Mutual Friends")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                }
-                Spacer()
-                Image(systemName: "info.circle")
-                    .foregroundColor(.gray)
-            }
-            .padding(.horizontal)
+            Text("\(user.firstName) \(user.lastName)")
+                .foregroundColor(.black)
+                .font(.title)
+                .bold()
+                .padding()
         }
     }
-
+    
     /// Determines the rotation angle based on swipe status
     private func rotationAngle(_ geometry: GeometryProxy) -> Angle {
         if swipeStatus == .superLike {
@@ -155,11 +130,7 @@ struct CardView_Previews: PreviewProvider {
             user: User(
                 id: 1,
                 firstName: "Mark",
-                lastName: "Bennett",
-                age: 27,
-                mutualFriends: 0,
-                occupation: "Insurance Agent"
-                // imageName: "profile_photo" // Uncomment if you have an image
+                lastName: "Bennett"
             ),
             onRemove: { user, swipeStatus in
                 // Handle the action based on swipeStatus

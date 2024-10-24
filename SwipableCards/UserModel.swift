@@ -12,9 +12,6 @@ struct User: Hashable, CustomStringConvertible {
     
     let firstName: String
     let lastName: String
-    let age: Int
-    let mutualFriends: Int
-    let occupation: String
     
     var description: String {
         return "\(firstName), id: \(id)"

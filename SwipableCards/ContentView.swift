@@ -10,16 +10,16 @@ import SwiftUI
 struct ContentView: View {
     /// List of users
     @State var users: [User] = [
-        User(id: 0, firstName: "Cindy", lastName: "Jones", age: 23, mutualFriends: 4, occupation: "Coach"),
-        User(id: 1, firstName: "Mark", lastName: "Bennett", age: 27, mutualFriends: 0, occupation: "Insurance Agent"),
-        User(id: 2, firstName: "Clayton", lastName: "Delaney", age: 20, mutualFriends: 1, occupation: "Food Scientist"),
-        User(id: 3, firstName: "Brittni", lastName: "Watson", age: 19, mutualFriends: 4, occupation: "Historian"),
-        User(id: 4, firstName: "Archie", lastName: "Prater", age: 22, mutualFriends:18, occupation: "Substance Abuse Counselor"),
-        User(id: 5, firstName: "James", lastName: "Braun", age: 24, mutualFriends: 3, occupation: "Marketing Manager"),
-        User(id: 6, firstName: "Danny", lastName: "Savage", age: 25, mutualFriends: 16, occupation: "Dentist"),
-        User(id: 7, firstName: "Chi", lastName: "Pollack", age: 29, mutualFriends: 9, occupation: "Recreational Therapist"),
-        User(id: 8, firstName: "Josue", lastName: "Strange", age: 23, mutualFriends: 5, occupation: "HR Specialist"),
-        User(id: 9, firstName: "Debra", lastName: "Weber", age: 28, mutualFriends: 13, occupation: "Judge")
+        User(id: 0, firstName: "Cindy", lastName: "Jones"),
+        User(id: 1, firstName: "Mark", lastName: "Bennett"),
+        User(id: 2, firstName: "Clayton", lastName: "Delaney"),
+        User(id: 3, firstName: "Brittni", lastName: "Watson"),
+        User(id: 4, firstName: "Archie", lastName: "Prater"),
+        User(id: 5, firstName: "James", lastName: "Braun"),
+        User(id: 6, firstName: "Danny", lastName: "Savage"),
+        User(id: 7, firstName: "Chi", lastName: "Pollack"),
+        User(id: 8, firstName: "Josue", lastName: "Strange"),
+        User(id: 9, firstName: "Debra", lastName: "Weber")
     ]
     
     /// Return the CardViews width for the given offset in the array
@@ -53,7 +53,6 @@ struct ContentView: View {
                     .offset(x: -geometry.size.width / 4, y: -geometry.size.height / 2)
                 
                 VStack(spacing: 24) {
-                    DateView()
                     ZStack {
                         ForEach(self.users, id: \.self) { user in
                             Group {
