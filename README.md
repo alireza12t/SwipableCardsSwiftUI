@@ -35,10 +35,9 @@ Once the app is running, you can swipe through the user cards on the main screen
 Here's a video demonstration of the app in action:
 
 
-<video width="720" height="480" controls>
-  <source src="https://github.com/user-attachments/assets/8b42e07b-d502-4306-833a-38f0b49c5aec">
-  Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/14abb031-4793-4b99-a337-5c71372ecd2d
+
+
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
